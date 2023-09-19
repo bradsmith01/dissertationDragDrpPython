@@ -1,0 +1,526 @@
+<!--Developer: Bradley Smith-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Include the Font Awesome Script for the Github Icon in the toolbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!--Include the bootstrap framework script-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    />
+
+    <!--Include the Cusotm CSS Styles Script-->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/popupQuestons.css" />
+
+    <!--Include the Custom JavaScript File to check the wcreen width is fitting-->
+    <script src="js/mobileChecker.js"></script>
+    <script src="js/practiceQuestions.js"></script>
+
+    <!--Title of website-->
+    <title>PyGoEasy - IDE - Home</title>
+  </head>
+  <body>
+    <!--Include Blockly libraries-->
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/blocks/python.min.js"></script>
+    <script src="https://unpkg.com/blockly/python_compressed.js"></script>
+
+    <!--Start of Nav Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!--Navbar brand/logo-->
+        <a class="navbar-brand" href="" alt="home link">PyGoEasy</a>
+
+        <!--Hamburger icon for mobile-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Navbar items-->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" onclick="showGuide()">Guide</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--End of Nav Bar-->
+
+    <!--The Guide-->
+    <div id="darkThemePopup" class="dark-theme-popup scrollable-div">
+      <button type="button" class="close-btn" onclick="closePopup()">
+        &times;
+      </button>
+      <div class="dark-theme-popup-content">
+        <h2 class="text-center">PyGoEasy Guide</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <p class="text-center">How to use the IDE? - ></p>
+          </div>
+          <div class="col-md-6 text-center">
+            <a href="html/howTo.html" class="btn btn-light">How To</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p class="text-center">Practice Questions - ></p>
+          </div>
+          <div class="col-md-6 text-center">
+            <a onclick="showQuestions()" class="btn btn-light"
+              >Practice Questions</a
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p class="text-center">
+              About the development of this website? - >
+            </p>
+          </div>
+          <div class="col-md-6 text-center">
+            <a href="html/aboutPyGoEasy.html" class="btn btn-light">About PyGoEasy</a>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="text-center">
+                <br />
+                PyGoEasy was built to be a free educational tool to help beginners start 
+                to learn more about Python coding in a fun and easy way. NO data is being 
+                collected through your use of this website and there is no way for you to 
+                save your work. However, there is a Github link in the IDE Toolbar, this 
+                can open Github where you can copy and paste your generated code. 
+                <br><br>We hope you enjoy the PyGoEasy IDE!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End of Guide Popup-->
+    <!--Start of the Popup Modal for clear editor-->
+    <div
+      class="modal fade"
+      id="warningModal"
+      tabindex="-1"
+      aria-labelledby="warningModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="warningModalLabel">Are you sure?</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!--Message inside the Modal-->
+          <div class="modal-body">
+            Are you sure you want to clear the editor? <br />This action cannot
+            be undone.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              id="clancelBtn"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary" id="continueBtn">
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End of modal for clear editor-->
+
+    <!--Start of Notification Copy To Clipboard-->
+    <div id="notificationArea" class="popup-copy" style="display: none">
+      <h3 class="text-light text-center">Code Copied to Clipboard</h3>
+    </div>
+    <!--End of Notification popup Copy To Clipboard-->
+
+
+
+    <!--Start of ToolBar-->
+    <div class="container toolbarBar mt-2">
+      <!--Start of Tool Bar Title-->
+      <div class="row">
+        <h4 class="text-center text-decoration-underline text-dark mt-2">
+          ToolBar
+        </h4>
+      </div>
+      <!--End of Tool Bar Title-->
+
+      <div class="row">
+        <!--Start of Font Size DropDown-->
+        <div class="col text-center">
+          <!--Start of Font Selection-->
+          <select
+            id="font-select"
+            class="form-select bg-dark text-light"
+            alt="font select drop down"
+          >
+            <option value="18" alt="font 18px">Font: 18px</option>
+            <option value="20" alt="font 20px">Font: 20px</option>
+            <option value="22" alt="font 22px">Font: 22px</option>
+            <option value="24" alt="font 24px">Font: 24px</option>
+            <option value="26" alt="font 26px">Font: 26px</option>
+            <option value="28" alt="font 28px">Font: 28px</option>
+            <option value="30" alt="font 30px">Font: 30px</option>
+          </select>
+          <!--End of Font Selection-->
+        </div>
+        <!--End of Font Size DropDown-->
+
+        <!--Start of Clear Editor-->
+        <div class="col">
+          <button
+            id="clearButton"
+            class="btn btn-dark"
+            alt="clear editor button"
+            onclick="showModal()"
+          >
+            Clear Editor
+          </button>
+        </div>
+        <!--End of Clear Editor-->
+
+        <!--Start of Copy Code Button-->
+        <div class="col">
+          <button
+            id="copyCodeButton"
+            class="btn btn-dark"
+            alt="Copy Code Button"
+            onclick="copyCodeToClipboard()"
+          >
+            Copy Code
+          </button>
+        </div>
+
+        <!--Start of Speak Text-->
+        <div class="col">
+          <button
+            onclick="speakText()"
+            class="btn btn-dark"
+            alt="speak editor text button"
+          >
+            Speak Text
+          </button>
+        </div>
+        <!--End of Speak Text-->
+
+        <!--Start of Open GitHub-->
+        <div class="col">
+          <a
+            class="btn btn-dark"
+            href="https://github.com/new?filename=code.txt"
+            target="_blank"
+            ><i class="fab fa-github" alt="open github button"></i> Open
+            Github</a
+          >
+        </div>
+        <!--End of Open GitHub-->
+
+        <!--Start of Convert To Python Button-->
+        <div class="col">
+          <button
+            class="btn  bg-light"
+            onclick="generateCode()"
+            alt="convert to python button"
+          >
+            Convert To Python
+          </button>
+        </div>
+        <!--End of Convert To Python Button-->
+      </div>
+    </div>
+    <!--End of ToolBar-->
+
+    <!--Start of container for Blockly and Ace-->
+    <div class="container workspace mt-5">
+      <div class="row">
+        <!--Start of Blockly Workspace-->
+        <div class="col">
+          <div id="blocklyDiv"></div>
+          <xml id="toolbox" style="display: none">
+            <!--Start of Logic Blocks In Tool Box-->
+            <category name="Logic" colour="210">
+              <!--White-->
+              <block type="controls_if"></block>
+              <block type="logic_compare"></block>
+              <block type="logic_operation"></block>
+              <block type="logic_negate"></block>
+              <block type="logic_boolean"></block>
+              <block type="logic_null"></block>
+              <block type="logic_ternary"></block>
+            </category>
+            <!--End of Logic Blocks In Tool Box-->
+
+            <!--Start of Loops Blocks In Tool Box-->
+            <category name="Loops" colour="120">
+              <block type="controls_repeat_ext"></block>
+              <block type="controls_whileUntil"></block>
+              <block type="controls_for"></block>
+              <block type="controls_forEach"></block>
+              <block type="controls_flow_statements"></block>
+            </category>
+            <!--End of Loops Blocks In Tool Box-->
+
+            <!--Start of Math Blocks In Tool Box-->
+            <category name="Math" colour="230">
+              <block type="math_number"></block>
+              <block type="math_arithmetic"></block>
+              <block type="math_single"></block>
+              <block type="math_trig"></block>
+              <block type="math_constant"></block>
+              <block type="math_number_property"></block>
+              <block type="math_round"></block>
+              <block type="math_on_list"></block>
+              <block type="math_modulo"></block>
+              <block type="math_constrain"></block>
+              <block type="math_random_int"></block>
+              <block type="math_random_float"></block>
+            </category>
+            <!--End of Math Blocks In Tool Box-->
+
+            <!--Start of Text Blocks In Tool Box-->
+            <category name="Text" colour="160">
+              <block type="text"></block>
+              <block type="text_join"></block>
+              <block type="text_append"></block>
+              <block type="text_length"></block>
+              <block type="text_isEmpty"></block>
+              <block type="text_indexOf"></block>
+              <block type="text_charAt"></block>
+              <block type="text_getSubstring"></block>
+              <block type="text_changeCase"></block>
+              <block type="text_trim"></block>
+              <block type="text_print"></block>
+              <block type="text_prompt_ext"></block>
+            </category>
+            <!--End of Text Blocks In Tool Box-->
+
+            <!--Start of Lists Blocks In Tool Box-->
+            <category name="Lists" colour="260">
+              <block type="lists_create_empty"></block>
+              <block type="lists_create_with"></block>
+              <block type="lists_repeat"></block>
+              <block type="lists_length"></block>
+              <block type="lists_isEmpty"></block>
+              <block type="lists_indexOf"></block>
+              <block type="lists_getIndex"></block>
+              <block type="lists_setIndex"></block>
+              <block type="lists_getSublist"></block>
+              <block type="lists_split"></block>
+              <block type="lists_sort"></block>
+            </category>
+            <!--End of Lists Blocks In Tool Box-->
+
+            <!--Start of Variable Blocks In Tool Box-->
+            <category
+              name="Variables"
+              colour="330"
+              custom="VARIABLE"
+            ></category>
+            <!--End of Variable Blocks In Tool Box-->
+
+            <!--Start of Function Blocks In Tool Box-->
+            <category
+              name="Functions"
+              colour="290"
+              custom="PROCEDURE"
+            ></category>
+            <!--End of Function Blocks In Tool Box-->
+          </xml>
+        </div>
+        <!--End of Blockly Workspace-->
+
+        <!-- Start of Ace Editor -->
+        <div class="col">
+          <div id="editor" alt="code editor"></div>
+        </div>
+      </div>
+      <!-- End of Ace Editor -->
+
+      <!--Start of the Practice Questions-->
+      <!-- Bootstrap Cards -->
+      <div id="practiceQuestionsTitle" class="row" style="display: none;">
+        <div class="col"></div>
+        <div class="col mt-5">
+          <h3 class="text-center text-light text-decoration-underline cardName">
+          Practice Questions
+          </h3>
+        </div>
+        <div class="col">
+          <button class="btn btn-dark" onclick="hideQuestionsAndTitle()">X</button>
+        </div>
+      </div>
+      <div id="practiceQuestions" class="row mt-5 mb-5" style="display: none;">
+        <!--First card of Questions-->
+        <div class="col">
+          <div class="card text-center bg-dark">
+            <div class="card-body">
+              <h5 class="card-title text-light">Q1</h5>
+              <p class="card-text text-light">
+                Print "Hello World!" to the console.
+              </p>
+              <a class="btn btn-light bg-light text-dark btn-hintq1">Hint</a>
+              <a class="btn btn-light bg-light text-dark btn-blockly-reveal1">Show Block Solution</a>
+              <a class="btn btn-light bg-light text-dark btn-code-reveal1">Show Code Solution</a>
+            </div>
+          </div>
+        </div>
+        <!--Start of Hint Popup Question 1-->
+        <div id="qOneHintPopup" class="popup" style="display: none;">
+          <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <p class="text-light">Try Using a 'Print' Block</p>
+          </div>
+        </div>
+        <!--End of Hint Popup Question 1-->
+
+        <!--Start of Blockly Image Reveal popup Question 1-->
+        <div id="qOneBlocklyPopup" class="popup" style="display: none;">
+          <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <img src="img/ques1Block.png" style="max-width: 80%;">
+          </div>
+        </div>
+        <!--End of Blockly Image Reveal popup Question 1-->
+
+        <!--Start of Code Reveal Q1-->
+        <div id="qOneCodePopup" class="popup" style="display: none;">
+          <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <img src="img/ques1Code.png" style="max-width: 80%;">
+          </div>
+        </div>
+        <!--End of Code Reveal Q1-->
+        
+        <!--Second card of Questions-->
+        <div class="col">
+          <div class="card text-center bg-dark">
+            <div class="card-body">
+              <h5 class="card-title text-light">Q2</h5>
+              <p class="card-text text-light">
+                Calculate the sum of two numbers using variables.
+              </p>
+              <a class="btn btn-light bg-light text-dark btn-hintq2">Hint</a>
+              <a class="btn btn-light bg-light text-dark btn-blockly-reveal2">Show Block Solution</a>
+              <a class="btn btn-light bg-light text-dark btn-code-reveal2">Show Code Solution</a>
+            </div>
+          </div>
+        </div>
+
+        <!--Start of Hint Popup Question Q2-->
+        <div id="qTwoHintPopup" class="popup" style="display: none;">
+          <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <p class="text-light">You Might Need to Use the 'Set to' block in variables</p>
+          </div>
+        </div>
+        <!--End of Hint Popup Question Q2-->
+
+        <!--Start of Blockly Image Reveal Q2 -->
+        <div id="qTwoBlocklyPopup" class="popup" style="display: none;">
+          <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <img src="img/ques2Blockly.png" style="max-width: 80%;">
+          </div>
+        </div>
+        <!--End of Blockly Image Reveal Q2-->
+
+        <!--Start of Code Reveal Q2-->
+        <div id="qTwoCodePopup" class="popup" style="display: none;">
+          <div class="popup-content">
+            <span class="close-btn">&times;</span>
+            <img src="img/ques2Code.png" style="max-width: 80%;">
+          </div>
+        </div>
+        <!--End of Code Reveal Q2-->
+
+        <!--Third card of Questions-->
+        <div class="col">
+          <div class="card text-center bg-dark">
+            <div class="card-body">
+              <h5 class="card-title text-light">Q3</h5>
+              <p class="card-text text-light">
+                Convert temperature from Celsius to Fahrenheit.
+              </p>
+              <a class="btn btn-light bg-light text-dark btn-hintq3">Hint</a>
+              <a class="btn btn-light bg-light text-dark btn-blockly-reveal3">Show Block Solution</a>
+              <a class="btn btn-light bg-light text-dark btn-code-reveal3">Show Code Solution</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <!--End of Question 3-->
+    <!--Start of Hint Popup Question 3-->
+    <div id="qThreeHintPopup" class="popup" style="display: none;">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <p class="text-light">The Equation to calculate from Celcius to Fahrenheit:<br>(celsiusvalue x 9/5) + 32<br>You may also need quite a few of these blocks:</p>
+        <img src="img/addBlock.png" style="max-width:40%">
+      </div>
+    </div>
+    <!--End of Hint Popup Question 3-->
+
+    <!--Start of Blockly Image Reveal 2 -->
+    <div id="qThreeBlocklyPopup" class="popup" style="display: none;">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <img src="img/ques3Blockly.png" style="max-width: 80%;">
+      </div>
+    </div>
+    <!--End of Blockly Image Reveal-->
+
+    <!--Start of Code Reveal Q3-->
+    <div id="qThreeCodePopup" class="popup" style="display: none;">
+      <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <img src="img/ques3Code.png" style="max-width: 80%;">
+      </div>
+    </div>
+    <!--End of Code Reveal Q3-->
+
+    <!--End of container for Blockly and Ace-->
+
+    <!--Start of all JavaScript Src's-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/aceEditorConfig.js"></script>
+    <script src="js/toolbar.js"></script>
+    <script src="js/blockly.js"></script>
+    <script src="js/utilityFuncs.js"></script>
+    <script src="js/guide.js"></script>
+    <script src="js/practiceQuestions.js"></script>
+    <!--End of all JavaScript Src's-->
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!--Developer: Bradley Smith-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyGoEasy - MobileView</title>
+
+    <!--Custom CSS Styling-->
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/popupQuestons.css" />
+
+    <!--Bootstrap 5 CSS styling-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!--Bootstrap 5 JavaScript src-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body class="bg-dark">
+    <!--Start of Nav Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="../index.html">PyGoEasy</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-center"
+        id="navbarCollapse"
+      ></div>
+    </nav>
+    <!--End of Nav Bar-->
+
+    <!--Start of error message popup-->
+    <div class="popup">
+      <div class="popup-content">
+        <h3 class="text-light">Error</h3>
+        <div class="">
+          <p class="text-light">
+            The PyGoEasy IDE is not compatible with a mobile or small screen
+            tablet device.<br />
+            If you are on desktop and have changed your window screen back to
+            full screen, please click the button below to return to the PyGoEasy
+            IDE.
+          </p>
+        </div>
+        <div>
+          <!--Refreshes page and will redirect to index IDE page if the page wisth is >755px-->
+          <a class="btn btn-dark" onclick="refreshPage()">Return to IDE</a>
+        </div>
+      </div>
+    </div>
+    <!--End of error message popup-->
+
+    <!--Custom JavaScript - (Main) -->
+    <script src="../js/main.js"></script>
+  </body>
+</html>

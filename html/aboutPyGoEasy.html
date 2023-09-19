@@ -1,0 +1,135 @@
+<!--Developer: Bradley Smith-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Include the Font Awesome Script for the Github Icon in the toolbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!--Include the bootstrap framework script-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    />
+
+    <!--Include the Cusotm CSS Styles Script-->
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <!--Include the Custom JavaScript File to check the wcreen width is fitting-->
+    <script src="js/mobileChecker.js"></script>
+
+    <!--Title of website-->
+    <title>PyGoEasy - About PyGoEasy</title>
+  </head>
+  <body>
+    <!--Include Blockly needed libraries-->
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/blocks/python.min.js"></script>
+    <script src="https://unpkg.com/blockly/python_compressed.js"></script>
+
+    <!--Start of Nav Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!--Navbar brand/logo-->
+        <a class="navbar-brand" href="../index.html" alt="home link"
+          >PyGoEasy</a
+        >
+
+        <!--Hamburger icon for mobile-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Navbar items-->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Back To IDE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--End of Nav Bar-->
+
+    <!--Start of Title-->
+    <div class="row text-center">
+      <div class="col">
+        <h2 class="text-light text-decoration-underline mt-5 mb-5">
+          About PyGoEasy
+        </h2>
+      </div>
+    </div>
+    <!--End of Title-->
+
+    <!--Start of Intro-->
+    <div class="row text-center">
+      <div class="col">
+        <p class="text-light text-center">
+          PyGoEasy was part of
+          <a
+            href="https://www.linkedin.com/in/bradley-smith2001/"
+            style="color: black"
+            target="_blank"
+            >Bradley Smith's</a
+          >
+          Masters ofcomputer Science Dissertation project.
+          <br />The project was titled
+          <span class="text-decoration-underline"
+            >'Transforming Python; A Drag and Drop approach to Python'</span
+          >
+        </p>
+      </div>
+    </div>
+    <!--End of Intro-->
+
+    <!--Start of Explaination-->
+    <div class="row text-center mt-5">
+      <div class="col">
+        <p class="text-light">
+          The project had extensive research, with a focus on User Interface
+          design to make it as easy to use as possible.<br />
+          The research into Light and Dark theme User Interfaces, colours and
+          contrast. Research also included building a website <br />that is
+          accessible to people with different colourblindness and vision
+          impairedness.<br /><br />
+          The layout of the website is meant to be as easy to use as possible
+          without using the features left to right. <br />The user will use the
+          Drag and Drop blocks first, then go to the right and click 'Convert To
+          Python'. <br />Then the code is generated in the Code Editor.
+        </p>
+        <div>
+          <img
+            src="../img/PyGoEasyScreenShot.png"
+            class="mt-5 mb-5"
+            style="max-width: 60%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95)"
+          />
+        </div>
+      </div>
+    </div>
+    <!--End of Explaination-->
+
+    <!--Start of all JavaScript Src's-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/aceEditorConfig.js"></script>
+    <script src="js/toolbar.js"></script>
+    <script src="js/blockly.js"></script>
+    <script src="js/utilityFuncs.js"></script>
+    <script src="js/guide.js"></script>
+    <!--End of all JavaScript Src's-->
+  </body>
+</html>

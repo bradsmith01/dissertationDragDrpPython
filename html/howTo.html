@@ -1,0 +1,299 @@
+<!--Developer: Bradley Smith-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Include the Font Awesome Script for the Github Icon in the toolbar-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!--Include the bootstrap framework script-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    />
+
+    <!--Include the Cusotm CSS Styles Script-->
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <!--Include the Custom JavaScript File to check the wcreen width is fitting-->
+    <script src="js/mobileChecker.js"></script>
+
+    <!--Title of website-->
+    <title>PyGoEasy - How To</title>
+  </head>
+  <body>
+    <!--Include Blockly libraries-->
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly/blocks/python.min.js"></script>
+    <script src="https://unpkg.com/blockly/python_compressed.js"></script>
+
+    <!--Start of Nav Bar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!--Navbar brand/logo-->
+        <a class="navbar-brand" href="../index.html" alt="home link"
+          >PyGoEasy</a
+        >
+
+        <!--Hamburger icon for mobile-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Navbar items-->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Back To IDE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--End of Nav Bar-->
+
+    <!--Start of Explaination of the Parts-->
+    <div class="row text-center">
+      <div class="col">
+        <h2 class="text-light text-decoration-underline mt-5 mb-5">
+          How To Use the IDE:
+        </h2>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <h4 class="text-light">
+          There are 4 key parts of the PyGoEasy Integrated Development
+          Environment(IDE):
+        </h4>
+        <p class="text-light">Click any to explore how to use them.</p>
+      </div>
+    </div>
+    <!--Links that will scroll to that part of the page-->
+    <div class="row text-center mt-3">
+      <div class="col">
+        <a
+          class="text-light btn btn-dark"
+          onclick="document.getElementById('toolbar').scrollIntoView({ behavior: 'smooth',block: 'start'})"
+          >Toolbar</a
+        >
+      </div>
+      <div class="col">
+        <a
+          class="text-light btn btn-dark"
+          onclick="document.getElementById('dragAndDropBlocks').scrollIntoView({ behavior: 'smooth',block: 'start'})"
+          >Drag and Drop Blocks</a
+        >
+      </div>
+      <div class="col">
+        <a
+          class="text-light btn btn-dark"
+          onclick="document.getElementById('codeEditor').scrollIntoView({ behavior: 'smooth',block: 'start'})"
+          >Code Editor</a
+        >
+      </div>
+      <div class="col">
+        <a
+          class="text-light btn btn-dark"
+          onclick="document.getElementById('practiceQuestions').scrollIntoView({ behavior: 'smooth', block: 'start' })"
+          >Practice Questions</a
+        >
+      </div>
+    </div>
+    <!--End of Explaination of the Parts-->
+
+    <!--Start of Toolbar How To-->
+    <div class="row mt-5 text-center" id="toolbar">
+      <div class="col">
+        <h3 class="text-light text-decoration-underline mb-3">ToolBar</h3>
+        <img
+          src="../img/toolbarImg.png"
+          style="max-width: 80%; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95)"
+        />
+        <div class="text-center" style="max-width: 80%; margin: 0 auto">
+          <p class="text-light mt-3">
+            The ToolBar is attached to the top of the IDE, and it has multiple
+            features. Some of the features are for accessibility for the IDE,
+            and others are just for helpful use. If you struggle reading the
+            coloured syntax in the Code Editor, two features can help: <br />
+            The 'Font Selector' and the 'Speak Text' button. <br /><br />
+            The 'Open Github' button will open Github in a new browser window.
+            This is where you can sign in and save your progress if you wish.
+            This can be achieved by making use of the 'Copy Code' button which
+            will copy all existing code from the Code Editor ready for you to
+            paste wherever you wish.
+            <br /><br />
+            The 'Clear Editor can be used to clear the Code Editor.
+            <br /><br />
+            ! THIS CODE IS NOT SAVED ANYWHERE, SO IF YOU WOULD LIKE TO SAVE IT,
+            DO SO BEFORE PRESSING!'
+            <br /><br />
+            The most important button in the ToolBar is the 'Convert to Python'
+            button, as indicated by the button being a different colour. When
+            pressed, it will convert any changes you make in the Drag and Drop
+            Block side, into the Code Editor as Python code.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--End of Toolbar How To-->
+
+    <!--Start of Drag and Drop Blocks How To-->
+    <div class="row text-center mt-5" id="dragAndDropBlocks">
+      <div class="col">
+        <h3 class="text-light text-decoration-underline mb-3">
+          Drag and Drop Blocks
+        </h3>
+        <div class="row">
+          <div class="col">
+            <img
+              src="../img/blocklyDemo.png"
+              style="
+                max-width: 80%;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+              "
+            />
+          </div>
+          <div class="col">
+            <img
+              src="../img/blocklyToolbox.png"
+              style="
+                max-width: 80%;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+              "
+            />
+          </div>
+        </div>
+
+        <div class="text-center" style="max-width: 80%; margin: 0 auto">
+          <p class="text-light mt-5">
+            The Drag and Drop Blocks part of the IDE is the fun part as there
+            the code can be placed together throught them snapping together. If
+            two blocks will not snap together it is likely they are not
+            compatible. When the blocks snap together if you have your speaker
+            on, there will be a clicking sound to indicate they have clicked
+            together. If you chose the wrong block and do not want to use it.
+            <br /><br />
+            The block can be dragged over the bin image and it will be deleted.
+            Pressing the backspace when clicking on the chosen block will also
+            delete it with the crumpling sound of paper.
+            <br /><br />
+            The left side of the Block Drag and Drop section contains all the
+            different types of blocks that can be found through the filtered
+            names.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--End of Drag and Drop Blocks How To-->
+
+    <!--Start of Code editor How To-->
+    <div class="row text-center mt-5" id="codeEditor">
+      <div class="col">
+        <h3 class="text-light text-decoration-underline mb-3">Code Editor</h3>
+        <div class="row">
+          <div class="col">
+            <img
+              src="../img/codeDemo.png"
+              style="
+                max-width: 40%;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+              "
+            />
+          </div>
+        </div>
+
+        <div class="text-center" style="max-width: 80%; margin: 0 auto">
+          <p class="text-light mt-5">
+            The Code Editor is editable and the code will be generated in there
+            when the 'Convert To Python' button is pressed.
+            <br /><br />
+            The different colours are to signify the different syntax types such
+            as the functions, text, loops etc.
+            <br /><br />
+            The numbers on the lines of the left side of the Code Editor are to
+            help find errors in professional IDE. Numbered lines have been
+            implemented here to help with the transition between the PyGoEasy
+            IDE and a professional IDE.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--End of Code Editor How To-->
+
+    <!--Start of Practice Questions How To-->
+    <div class="row text-center mt-5 mb-5" id="practiceQuestions">
+      <div class="col">
+        <h3 class="text-light text-decoration-underline mb-3">
+          Practice Questions
+        </h3>
+        <div class="row">
+          <div class="col">
+            <img
+              src="../img/guideDemo.png"
+              style="
+                max-width: 60%;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+              "
+              class="mt-5"
+            />
+          </div>
+          <div class="col">
+            <img
+              src="../img/practiceQuestionsDemo.png"
+              style="
+                max-width: 85%;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+              "
+            />
+          </div>
+        </div>
+
+        <div class="text-center" style="max-width: 80%; margin: 0 auto">
+          <p class="text-light mt-5 mb-5">
+            The 'Practice Questions' can be accessed by clicking the 'Practice
+            Questions' button in the Popup Guide on the Home Page of the IDE. If
+            you closed the guide and wish to revisit it, just click the 'Guide'
+            button in the top Navigation Bar. The Practice Questions are hidden
+            by default, but are visible once the button is pressed in the
+            'Guide'.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--End of Practice Questions How To-->
+
+    <div class="row text-center mb-5">
+      <div class="col">
+        <a
+          href="#top"
+          class="btn btn-dark mb-5"
+          style="box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95)"
+          >Back to Top</a
+        >
+      </div>
+    </div>
+    <!--Start of all JavaScript Src's-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/aceEditorConfig.js"></script>
+    <script src="js/toolbar.js"></script>
+    <script src="js/blockly.js"></script>
+    <script src="js/utilityFuncs.js"></script>
+    <script src="js/guide.js"></script>
+    <!--End of all JavaScript Src's-->
+  </body>
+</html>

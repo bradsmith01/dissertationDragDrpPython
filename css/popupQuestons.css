@@ -1,0 +1,68 @@
+/*Developer: Bradley Smith*/
+/*Styling for the popup questions images and hints, divs*/
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(63, 63, 63, 0.8); /*0.8 = 80% translucent background */
+  padding: 20px;
+  border-radius: 5px;
+  /*Add subtle black shadow*/
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+
+  /*Width and Height of guide*/
+  min-width: 50%;
+  max-width: 600px;
+  min-height: fit-content;
+
+  /*Bring the Popup to the front*/
+  z-index: 9999;
+
+  /*Center the popup content*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  text-align: center;
+}
+
+/*Styling for the close button*/
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/*Styling for copy to clipboard popup notification*/
+
+.popup-copy {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(63, 63, 63, 0.8); /*0.8 = 80% translucent background*/
+  padding: 20px;
+  border-radius: 5px;
+  /*Add subtle black shadow*/
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
+
+  /*Width and Height of guide*/
+  min-width: 50%;
+  max-width: 600px;
+  min-height: fit-content;
+
+  /*Bring the Popup to the front*/
+  z-index: 9999;
+
+  /*Center the content vertically and horizontally*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
